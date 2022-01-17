@@ -1,0 +1,50 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+    - 'master'
+
+jobs:
+  deploy:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install sphinx sphinx-rtd-theme
+      - name: Checkout polytope-client
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository_owner }}/polytope-deployment
+          path: ./polytope-deployment
+          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+      - name: Checkout polytope-deployment
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository_owner }}/polytope-client
+          path: ./polytope-client
+          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+      - name: Checkout polytope-server
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository_owner }}/polytope-server
+          path: ./polytope-server
+          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+      - name: Checkout polytope-docs
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+          path: ./polytope-docs
+      - name: Make docs
+        run: |
+          pip install -e ./polytope-client
+          cd ./polytope-docs
+          ./make_all.sh
