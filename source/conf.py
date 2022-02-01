@@ -26,6 +26,7 @@ from pathlib import Path
 import shutil
 import subprocess
 from git import Repo
+import distutils
 
 repo_dir = os.path.realpath(os.path.dirname(os.path.dirname(__file__)))
 
