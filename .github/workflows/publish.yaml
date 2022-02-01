@@ -47,7 +47,8 @@ jobs:
         run: |
           #pip install -e ./polytope-client
           pip install -r ./polytope-docs/requirements.txt
-          cd ./polytope-docs
+          #cd ./polytope-docs
+          cd ./polytope-docs/source
           python -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
           #./make_all.sh
           curl -X POST -d "token=${{ secrets.READTHEDOCS_TOKEN }}" -d "branches=master" ${{ secrets.READTHEDOCS_API }}
