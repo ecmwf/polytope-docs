@@ -36,8 +36,6 @@ if git_dir.exists() and git_dir.is_dir():
 git_dir.mkdir(parents=True, exist_ok=True)
 
 doc_dir = Path(repo_dir) / "source_all"
-if doc_dir.exists() and doc_dir.is_dir():
-    shutil.rmtree(doc_dir)
 doc_dir.mkdir(parents=True, exist_ok=True)
 
 # clone and "rsync" to doc_dir
