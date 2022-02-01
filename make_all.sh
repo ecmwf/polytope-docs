@@ -19,7 +19,6 @@
 ## does it submit to any jurisdiction.
 ##
 
-pwd
 mkdir -p ./source_all
 rm -r ./source_all/*
 rsync -r ../polytope-client/docs/source/      ./source_all

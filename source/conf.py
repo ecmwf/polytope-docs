@@ -28,29 +28,25 @@ import subprocess
 from git import Repo
 
 repo_dir = os.path.realpath(os.path.dirname(os.path.dirname(__file__)))
-print(repo_dir)
-print(os.getcwd())
 
 git_dir = Path(repo_dir) / "git"
 if git_dir.exists() and git_dir.is_dir():
     shutil.rmtree(git_dir)
 git_dir.mkdir(parents=True, exist_ok=True)
-print(os.listdir(repo_dir))
 
-doc_dir = Path(repo_dir) / "source_all"
-doc_dir.mkdir(parents=True, exist_ok=True)
+doc_dir = Path(repo_dir) / "source_all_rtd"
+distutils.dir_util.copy_tree(str(Path(repo_dir) / "source"), str(doc_dir)])
 
 # clone and "rsync" to doc_dir
 
 repos = ['polytope-client', 'polytope-deployment', 'polytope-server']
 for repo in repos:
     Repo.clone_from("https://github.com/ecmwf-projects/" + repo + ".git", str(git_dir / repo))
-    print(os.listdir(str(git_dir)))
-    print(os.listdir(str(git_dir / repo)))
-    shutil.which("rsync")
-    subprocess.call(["rsync", "-r", str(git_dir / repo / "docs" / "source") + os.sep, str(doc_dir)])
+    repo_doc_source = git_dir / repo / "docs" / "source"
+    for x in os.walk(str(repo_doc_source))[1]:
+        distutils.dir_util.copy_tree(str(repo_doc_source / x), str(doc_dir / x))
 
-subprocess.call(["rsync", "-r", str(Path(repo_dir) / "source") + os.sep, str(doc_dir)])
+os.chdir(str(doc_dir))
 
 # install polytope-server
 
