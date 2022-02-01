@@ -44,6 +44,8 @@ doc_dir.mkdir(parents=True, exist_ok=True)
 repos = ['polytope-client', 'polytope-deployment', 'polytope-server']
 for repo in repos:
     Repo.clone_from("https://github.com/ecmwf-projects/" + repo + ".git", str(git_dir / repo))
+    os.listdir(str(git_dir))
+    os.listdir(str(git_dir / repo))
     subprocess.run("rsync -r " + str(git_dir / repo / "docs" / "source") + os.sep + " " + str(doc_dir))
 
 subprocess.run("rsync -r " + str(repo_dir / "source") + os.sep + " " + str(doc_dir))
