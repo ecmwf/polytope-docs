@@ -21,6 +21,23 @@
 
 # Configuration file for the Sphinx documentation builder.
 
+import os
+repo_dir = os.path.realpath(os.path.dirname(os.path.dirname(__file__)))
+print(repo_dir)
+print(os.getcwd())
+
+from git import Repo
+git_dir = Path(repo_dir) / "git"
+shutil.rmtree(git_dir)
+git_dir.mkdir(parents=True, exist_ok=True)
+Repo.clone_from("https://github.com/ecmwf-projects/polytope-server.git", git_dir.str())
+
+from pathlib import Path
+import shutil
+doc_dir = Path(repo_dir) / "source_all"
+shutil.rmtree(doc_dir)
+doc_dir.mkdir(parents=True, exist_ok=True)
+
 import polytope
 
 # -- Project information
