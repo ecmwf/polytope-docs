@@ -35,6 +35,7 @@ git_dir = Path(repo_dir) / "git"
 if git_dir.exists() and git_dir.is_dir():
     shutil.rmtree(git_dir)
 git_dir.mkdir(parents=True, exist_ok=True)
+os.listdir(repo_dir)
 
 doc_dir = Path(repo_dir) / "source_all"
 doc_dir.mkdir(parents=True, exist_ok=True)
