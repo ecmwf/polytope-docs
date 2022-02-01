@@ -47,9 +47,10 @@ for repo in repos:
     Repo.clone_from("https://github.com/ecmwf-projects/" + repo + ".git", str(git_dir / repo))
     print(os.listdir(str(git_dir)))
     print(os.listdir(str(git_dir / repo)))
-    subprocess.run("rsync -r " + str(git_dir / repo / "docs" / "source") + os.sep + " " + str(doc_dir))
+    shutil.which("rsync")
+    subprocess.call(["rsync", "-r", str(git_dir / repo / "docs" / "source") + os.sep, str(doc_dir)])
 
-subprocess.run("rsync -r " + str(repo_dir / "source") + os.sep + " " + str(doc_dir))
+subprocess.call(["rsync", "-r", str(repo_dir / "source") + os.sep, str(doc_dir)])
 
 # install polytope-server
 
