@@ -38,11 +38,11 @@ jobs:
       #    repository: ${{ github.repository_owner }}/polytope-server
       #    path: ./polytope-server
       #    token: ${{ secrets.ECMWF_REPO_ACCESS }}
-      #- name: Checkout polytope-docs
-      #  uses: actions/checkout@v2
-      #  with:
-      #    token: ${{ secrets.ECMWF_REPO_ACCESS }}
-      #    path: ./polytope-docs
+      - name: Checkout polytope-docs
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+          path: ./polytope-docs
       - name: Make docs
         run: |
           #pip install -e ./polytope-client
