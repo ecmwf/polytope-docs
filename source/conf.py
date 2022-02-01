@@ -57,7 +57,7 @@ subprocess.call(["rsync", "-r", str(Path(repo_dir) / "source") + os.sep, str(doc
 import subprocess
 import sys
 
-subprocess.check_call([sys.executable, "-m", "pip", "install", "-e", str(git_dir / "polytope-server")])
+subprocess.check_call([sys.executable, "-m", "pip", "install", "-e", str(git_dir / "polytope-client")])
 
 import polytope
 
