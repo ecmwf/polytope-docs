@@ -50,7 +50,7 @@ for repo in repos:
     shutil.which("rsync")
     subprocess.call(["rsync", "-r", str(git_dir / repo / "docs" / "source") + os.sep, str(doc_dir)])
 
-subprocess.call(["rsync", "-r", str(repo_dir / "source") + os.sep, str(doc_dir)])
+subprocess.call(["rsync", "-r", str(Path(repo_dir) / "source") + os.sep, str(doc_dir)])
 
 # install polytope-server
 
