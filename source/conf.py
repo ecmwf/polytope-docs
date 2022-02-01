@@ -35,7 +35,7 @@ git_dir = Path(repo_dir) / "git"
 if git_dir.exists() and git_dir.is_dir():
     shutil.rmtree(git_dir)
 git_dir.mkdir(parents=True, exist_ok=True)
-os.listdir(repo_dir)
+print(os.listdir(repo_dir))
 
 doc_dir = Path(repo_dir) / "source_all"
 doc_dir.mkdir(parents=True, exist_ok=True)
@@ -45,8 +45,8 @@ doc_dir.mkdir(parents=True, exist_ok=True)
 repos = ['polytope-client', 'polytope-deployment', 'polytope-server']
 for repo in repos:
     Repo.clone_from("https://github.com/ecmwf-projects/" + repo + ".git", str(git_dir / repo))
-    os.listdir(str(git_dir))
-    os.listdir(str(git_dir / repo))
+    print(os.listdir(str(git_dir)))
+    print(os.listdir(str(git_dir / repo)))
     subprocess.run("rsync -r " + str(git_dir / repo / "docs" / "source") + os.sep + " " + str(doc_dir))
 
 subprocess.run("rsync -r " + str(repo_dir / "source") + os.sep + " " + str(doc_dir))
