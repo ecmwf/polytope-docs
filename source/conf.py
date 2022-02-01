@@ -44,7 +44,7 @@ repos = ['polytope-client', 'polytope-deployment', 'polytope-server']
 for repo in repos:
     Repo.clone_from("https://github.com/ecmwf-projects/" + repo + ".git", str(git_dir / repo))
     repo_doc_source = git_dir / repo / "docs" / "source"
-    for x in os.walk(str(repo_doc_source))[1]:
+    for x in next(os.walk(str(repo_doc_source)))[1]:
         distutils.dir_util.copy_tree(str(repo_doc_source / x), str(doc_dir / x))
 
 os.chdir(str(doc_dir))
