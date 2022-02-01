@@ -35,7 +35,7 @@ if git_dir.exists() and git_dir.is_dir():
 git_dir.mkdir(parents=True, exist_ok=True)
 
 doc_dir = Path(repo_dir) / "source_all_rtd"
-distutils.dir_util.copy_tree(str(Path(repo_dir) / "source"), str(doc_dir)])
+distutils.dir_util.copy_tree(str(Path(repo_dir) / "source"), str(doc_dir))
 
 # clone and "rsync" to doc_dir
 
