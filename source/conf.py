@@ -30,12 +30,14 @@ from pathlib import Path
 import shutil
 from git import Repo
 git_dir = Path(repo_dir) / "git"
-shutil.rmtree(git_dir)
+if git_dir.exists() and git_dir.is_dir():
+    shutil.rmtree(git_dir)
 git_dir.mkdir(parents=True, exist_ok=True)
 Repo.clone_from("https://github.com/ecmwf-projects/polytope-server.git", git_dir.str())
 
 doc_dir = Path(repo_dir) / "source_all"
-shutil.rmtree(doc_dir)
+if doc_dir.exists() and doc_dir.is_dir():
+    shutil.rmtree(doc_dir)
 doc_dir.mkdir(parents=True, exist_ok=True)
 
 import polytope
