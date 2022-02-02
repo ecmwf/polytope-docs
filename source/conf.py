@@ -48,7 +48,17 @@ for repo in repos:
     for x in next(os.walk(str(repo_doc_source)))[1]:
         distutils.dir_util.copy_tree(str(repo_doc_source / x), str(doc_dir / x))
 
+print(os.getcwd())
+
 os.chdir(str(doc_dir))
+
+print("Debugging")
+print(os.getcwd())
+os.listdir(os.getcwd())
+os.listdir(str(Path(os.getcwd()) / ".."))
+os.listdir(str(Path(os.getcwd()) / ".." / "source"))
+print(os.environ.get('SOURCEDIR'))
+print(os.environ.get('BUILDDIR'))
 
 # install polytope-server
 
