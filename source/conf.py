@@ -36,8 +36,8 @@ if git_dir.exists() and git_dir.is_dir():
     shutil.rmtree(git_dir)
 git_dir.mkdir(parents=True, exist_ok=True)
 
-doc_dir = Path(repo_dir) / "source_all_rtd"
-distutils.dir_util.copy_tree(str(Path(repo_dir) / "source"), str(doc_dir))
+doc_dir = Path(repo_dir) / "source"
+#distutils.dir_util.copy_tree(str(Path(repo_dir) / "source"), str(doc_dir))
 
 # clone and "rsync" to doc_dir
 
@@ -54,9 +54,9 @@ os.chdir(str(doc_dir))
 
 print("Debugging")
 print(os.getcwd())
-os.listdir(os.getcwd())
-os.listdir(str(Path(os.getcwd()) / ".."))
-os.listdir(str(Path(os.getcwd()) / ".." / "source"))
+print(os.listdir(os.getcwd()))
+print(os.listdir(str(Path(os.getcwd()) / "..")))
+print(os.listdir(str(Path(os.getcwd()) / ".." / "source")))
 print(os.environ.get('SOURCEDIR'))
 print(os.environ.get('BUILDDIR'))
 
