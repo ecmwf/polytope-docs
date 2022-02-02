@@ -22,6 +22,7 @@
 # Configuration file for the Sphinx documentation builder.
 
 import os
+import sys
 from pathlib import Path
 import shutil
 import subprocess
@@ -51,20 +52,17 @@ os.chdir(str(doc_dir))
 
 # install polytope-server
 
-import subprocess
-import sys
+sys.path.insert(0, str(git_dir / "polytope-server" ))
 
-subprocess.check_call([sys.executable, "-m", "pip", "install", "-e", str(git_dir / "polytope-client")])
-
-import polytope
+from polytope_server.version import __version__ as polytope_version
 
 # -- Project information
 
-project = "Polytope client"
+project = "Polytope"
 copyright = "2021, ECMWF"
 author = "ECMWF"
 
-release = polytope.__version__
+release = polytope_version
 
 # -- General configuration
 
