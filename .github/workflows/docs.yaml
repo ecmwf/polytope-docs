@@ -13,35 +13,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: '3.11'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install sphinx sphinx-rtd-theme
       - name: Checkout polytope-deployment
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/polytope-deployment
           path: ./polytope-deployment
-          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+          # token: ${{ secrets.ECMWF_REPO_ACCESS }}
       - name: Checkout polytope-client
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/polytope-client
           path: ./polytope-client
-          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+          # token: ${{ secrets.ECMWF_REPO_ACCESS }}
       - name: Checkout polytope-server
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/polytope-server
           path: ./polytope-server
-          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+          # token: ${{ secrets.ECMWF_REPO_ACCESS }}
       - name: Checkout polytope-docs
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
-          token: ${{ secrets.ECMWF_REPO_ACCESS }}
+          # token: ${{ secrets.ECMWF_REPO_ACCESS }}
           path: ./polytope-docs
       - name: Make docs
         run: |
