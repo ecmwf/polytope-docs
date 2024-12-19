@@ -23,7 +23,6 @@ jobs:
       - name: Checkout polytope-docs
         uses: actions/checkout@v4
         with:
-          # token: ${{ secrets.ECMWF_REPO_ACCESS }}
           path: ./polytope-docs
       - name: Make docs
         run: |
